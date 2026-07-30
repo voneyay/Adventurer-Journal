@@ -1,14 +1,14 @@
 {
     "程程": {
-        "level": 1,
-        "exp": 40,
-        "title": "見習冒險者",
-        "completed": 4
+        "level": 0,
+        "exp": 0,
+        "title": "新手冒險者",
+        "completed": 0
     },
     "波波": {
-        "level": 1,
-        "exp": 10,
-        "title": "見習冒險者",
-        "completed": 1
+        "level": 0,
+        "exp": 0,
+        "title": "新手冒險者",
+        "completed": 0
     }
 }
