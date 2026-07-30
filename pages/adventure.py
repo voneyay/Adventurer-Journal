@@ -225,11 +225,11 @@ diary = f"""
 
 
 今日類型：
-{adventure_type}
+{", ".join(adventure_types)}
 
 
 主線任務：
-{quest}
+{", ".join(quests)}
 
 
 勇者小記：
