@@ -3,18 +3,15 @@ from datetime import date
 from pathlib import Path
 import json
 
-
 from utils.save import save_adventure, load_today_note
 from utils.exp import add_exp
 from utils.translate import translate_to_english
-
 
 
 st.set_page_config(
     page_title="⚔️ 今日冒險紀錄",
     page_icon="⚔️"
 )
-
 
 
 # =====================
@@ -26,7 +23,6 @@ if st.button("🏰 回城卷軸"):
     st.switch_page(
         "app.py"
     )
-
 
 
 st.title(
@@ -45,9 +41,7 @@ character = st.session_state.get(
 )
 
 
-
 if character is None:
-
 
     st.warning(
         "🏰 尚未選擇冒險者"
@@ -80,7 +74,6 @@ if character is None:
     ):
 
         st.session_state["character"] = character
-
         st.rerun()
 
 
@@ -108,18 +101,17 @@ st.divider()
 # =====================
 
 
-weather_options = [
-    "☀️  晴天",
-    "⛅ 多雲",
-    "☁️  陰天",
-    "🌧️ 雨天",
-    "🤷 不想觀察"
-]
-
+# 天氣
 
 weather = st.radio(
     "☀️ 今日天氣",
-    weather_options
+    [
+        "☀️  晴天",
+        "⛅ 多雲",
+        "☁️  陰天",
+        "🌧️ 雨天",
+        "🤷 不想觀察"
+    ]
 )
 
 
@@ -133,45 +125,25 @@ if custom_weather:
     weather = custom_weather
 
 
+
+# 探險類型
+
 adventure_types = st.multiselect(
     "📅 今日探險類型",
     [
-        "💼 工作日",
-        "📚 學習日",
-        "🏠 宅宅日",
+        "💼 工作",
+        "📖 閱讀",
+        "🏠 宅宅日", 
         "🌍 出門探險",
-        "✈️  旅行日",
+        "🎬 看動畫",
+        "🎮 玩遊戲",
+        "🏃 運動",
         "🌱 耍廢日",
+        "🎹 彈鋼琴",
         "✨ 特殊事件"
     ]
 )
 
-
-custom_adventure_type = st.text_input(
-    "➕ 自訂探險類型",
-    placeholder="例如：朋友聚會、完成專案"
-)
-
-
-if custom_adventure_type:
-    adventure_types.append(
-        custom_adventure_type
-    )
-
-
-adventure_types = st.multiselect(
-    "📅 今日探險類型",
-    [
-    "💼 工作",
-    "📢 開會",
-    "💻 寫程式",
-    "📖 閱讀",
-    "🎬 看動畫",
-    "🎮 玩遊戲",
-    "🏃 運動",
-    "🎹 彈鋼琴"
-    ]
-)
 
 custom_adventure_type = st.text_input(
     "➕ 自訂探險類型",
@@ -180,13 +152,48 @@ custom_adventure_type = st.text_input(
 
 
 if custom_adventure_type:
+
     adventure_types.append(
         custom_adventure_type
     )
 
 
 
+# 主線任務
+
+main_quests = st.multiselect(
+    "⚔️ 今日主線任務",
+    [
+        "📖 完成今日冒險紀錄",
+        "💻 社處屬性",
+        "📚 學習新技能",
+        "🏃 體能屬性",
+        "🎹 音樂屬性"
+    ]
+)
+
+
+custom_main_quest = st.text_input(
+    "➕ 自訂主線任務",
+    placeholder="例如：完成冒險者日記新功能"
+)
+
+
+if custom_main_quest:
+
+    main_quests.append(
+        custom_main_quest
+    )
+
+
+
+st.divider()
+
+
+
+# =====================
 # 載入今天舊日記
+# =====================
 
 today_note = load_today_note(
     character
@@ -210,7 +217,6 @@ st.divider()
 # 日記內容
 # =====================
 
-
 diary = f"""
 日期：
 {date.today()}
@@ -229,7 +235,7 @@ diary = f"""
 
 
 主線任務：
-{", ".join(quests)}
+{", ".join(main_quests)}
 
 
 勇者小記：
