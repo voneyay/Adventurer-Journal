@@ -108,47 +108,81 @@ st.divider()
 # =====================
 
 
+weather_options = [
+    "☀️  晴天",
+    "⛅ 多雲",
+    "☁️  陰天",
+    "🌧️ 雨天",
+    "🤷 不想觀察"
+]
+
+
 weather = st.radio(
     "☀️ 今日天氣",
-    [
-        "晴天",
-        "多雲",
-        "陰天",
-        "雨天",
-        "不想觀察"
-    ]
+    weather_options
 )
 
 
+custom_weather = st.text_input(
+    "➕ 自訂天氣",
+    placeholder="例如：颱風天、超熱、涼爽"
+)
 
-adventure_type = st.selectbox(
+
+if custom_weather:
+    weather = custom_weather
+
+
+adventure_types = st.multiselect(
     "📅 今日探險類型",
     [
-        "工作日",
-        "學習日",
-        "宅家日",
-        "出門探險",
-        "旅行日",
-        "放空日",
-        "特殊事件"
+        "💼 工作日",
+        "📚 學習日",
+        "🏠 宅宅日",
+        "🌍 出門探險",
+        "✈️  旅行日",
+        "🌱 耍廢日",
+        "✨ 特殊事件"
     ]
 )
 
 
+custom_adventure_type = st.text_input(
+    "➕ 自訂探險類型",
+    placeholder="例如：朋友聚會、完成專案"
+)
 
-quest = st.selectbox(
-    "⚔️ 今日主線任務",
+
+if custom_adventure_type:
+    adventure_types.append(
+        custom_adventure_type
+    )
+
+
+adventure_types = st.multiselect(
+    "📅 今日探險類型",
     [
-        "工作",
-        "開會",
-        "寫程式",
-        "閱讀",
-        "看動畫",
-        "玩遊戲",
-        "運動",
-        "彈鋼琴"
+    "💼 工作",
+    "📢 開會",
+    "💻 寫程式",
+    "📖 閱讀",
+    "🎬 看動畫",
+    "🎮 玩遊戲",
+    "🏃 運動",
+    "🎹 彈鋼琴"
     ]
 )
+
+custom_adventure_type = st.text_input(
+    "➕ 自訂探險類型",
+    placeholder="例如：朋友聚會、旅行、做料理"
+)
+
+
+if custom_adventure_type:
+    adventure_types.append(
+        custom_adventure_type
+    )
 
 
 
